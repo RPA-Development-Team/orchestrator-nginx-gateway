@@ -3,6 +3,7 @@ This repository should be cloned and used as the entry-point for all orchestrato
 ## Prerequisites
 If you are using Linux:
 - Install Docker
+
 If you are using Windows:
 - Install WSL2
 - Install Docker for Windows
