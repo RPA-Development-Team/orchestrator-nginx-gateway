@@ -1,8 +1,8 @@
 version: '3'
 services:
     orch-front:
-        build: ./orchestrator-frontend/.
+        build: ../orchestrator-frontend/.
     nginx:
-        build: ./nginx-setup/nginx/.
+        build: /.
         ports:
             - 80:80
