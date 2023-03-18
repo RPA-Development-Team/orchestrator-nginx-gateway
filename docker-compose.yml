@@ -4,6 +4,10 @@ services:
         build: ../orchestrator-frontend/.
     orch-auth-service:
         build: ../orchestrator-authentication-service/.
+    orch-studio-service:
+        build: ../orchestrator-studio-service/.
+        ports:
+            - 8001:8000
     nginx:
         build: /.
         ports:
