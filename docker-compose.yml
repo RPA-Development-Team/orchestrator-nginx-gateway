@@ -9,6 +9,6 @@ services:
         ports:
             - 8001:8000
     nginx:
-        build: /.
+        build: .
         ports:
             - 80:80
