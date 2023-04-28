@@ -6,8 +6,8 @@ services:
         build: ../orchestrator-authentication-service/.
     orch-studio-service:
         build: ../orchestrator-studio-service/.
-        ports:
-            - 8001:8000
+    orch-robot-logging-service:
+        build: ../orchestrator-robot-logging-service/.
     nginx:
         build: .
         ports:
