@@ -6,6 +6,8 @@ services:
         build: ../orchestrator-authentication-service/.
     orch-studio-service:
         build: ../orchestrator-studio-service/.
+    orch-robot-service:
+        build: ../Robot-Microservice-SocketServer/.
     orch-robot-logging-service:
         build: ../orchestrator-robot-logging-service/.
     nginx:
