@@ -15,8 +15,6 @@ jobs:
     name: Build and Deploy
     runs-on: ubuntu-latest
     steps:
-    - name: Check out repository
-      uses: actions/checkout@v3
     - name: "Connect to VM"
       uses: appleboy/ssh-action@v0.1.10
       with:
