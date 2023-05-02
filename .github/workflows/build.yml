@@ -25,4 +25,4 @@ jobs:
         username: ${{ secrets.GCE_USERNAME }}
         key: ${{ secrets.GCE_KEY }}
         script: |
-          cd ${{ secrets.GCE_DEPLOYMENT_PATH }}/orchestrator-nginx-gateway && git pull origin feat-gcp-deploy
+          cd ${{ secrets.GCE_DEPLOYMENT_PATH }}/orchestrator-nginx-gateway && git pull origin feat-gcp-deployment
