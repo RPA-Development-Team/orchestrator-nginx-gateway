@@ -26,4 +26,4 @@ jobs:
         key: ${{ secrets.GCE_KEY }}
         script: |
           whoami
-          ls -al
+          ls ../khalidzahra/orchestrator
