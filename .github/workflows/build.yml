@@ -25,5 +25,4 @@ jobs:
         username: ${{ secrets.GCE_USERNAME }}
         key: ${{ secrets.GCE_KEY }}
         script: |
-          whoami
-          ls ../khalidzahra/orchestrator
+          cd ${{ secrets.GCE_DEPLOYMENT_PATH }}/orchestrator-nginx-gateway && git pull
