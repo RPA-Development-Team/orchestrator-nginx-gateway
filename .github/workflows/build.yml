@@ -1,0 +1,25 @@
+name: Build
+
+on: 
+  push:
+    branches:
+      - master
+      - feat-gcp-deployment
+
+env:
+  PROJECT_ID: ${{ secrets.GCE_PROJECT }}
+  GCE_INSTANCE: ${{ secrets.GCE_INSTANCE }}
+  GCE_INSTANCE_ZONE: ${{ secrets.GCE_INSTANCE_ZONE }}
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+    uses: appleboy/ssh-action@v0.1.10
+    with:
+      host: ${{ secrets.GCE_HOST }}
+      username: ${{ secrets.GCE_USERNAME }}
+      key: ${{ secrets.GCE_KEY }}
+      script: |
+        whoami
+        ls -al
