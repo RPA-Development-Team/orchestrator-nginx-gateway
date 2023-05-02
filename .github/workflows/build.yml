@@ -4,7 +4,6 @@ on:
   push:
     branches:
      - master
-     - feat-gcp-deployment
 
 env:
   PROJECT_ID: ${{ secrets.GCE_PROJECT }}
