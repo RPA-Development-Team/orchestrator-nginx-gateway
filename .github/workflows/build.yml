@@ -26,4 +26,4 @@ jobs:
         key: ${{ secrets.GCE_KEY }}
         script: |
           cd ${{ secrets.GCE_DEPLOYMENT_PATH }}/orchestrator-nginx-gateway && git pull origin master
-          sudo docker compose up --build nginx
+          sudo docker compose up -d --build nginx
