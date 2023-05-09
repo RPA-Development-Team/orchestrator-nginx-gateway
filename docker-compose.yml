@@ -1,7 +1,7 @@
 version: '3'
 services:
     orch-front:
-        build: ../orchestrator-frontend/.
+        build: ../orchestrator-frontend-js/.
     orch-auth-service:
         build: ../orchestrator-authentication-service/.
     orch-studio-service:
