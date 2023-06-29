@@ -12,6 +12,14 @@ services:
         build: ../Robot-Microservice-SocketServer/.
     orch-robot-logging-service:
         build: ../orchestrator-robot-logging-service/.
+    elasticsearch:
+        build: ../orchestrator-elastic-search/.
+        ports:
+        - 9200:9200
+        - 9300:9300
+        environment:
+        - discovery.type=single-node
+        - xpack.security.enabled=false
     nginx:
         build: .
         ports:
