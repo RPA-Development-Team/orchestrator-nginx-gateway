@@ -20,6 +20,8 @@ services:
         environment:
         - discovery.type=single-node
         - xpack.security.enabled=false
+        volumes:
+            - ../orchestrator-elastic-search/es-data:/usr/share/elasticsearch/data
     keycloak:
         image: quay.io/keycloak/keycloak:21.1.2
         environment:
