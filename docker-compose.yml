@@ -27,6 +27,8 @@ services:
         environment:
             KEYCLOAK_ADMIN: admin
             KEYCLOAK_ADMIN_PASSWORD: admin
+        volumes:
+            - ../orchestrator-authentication-service/keycloak:/opt/keycloak/data/
         ports:
         - 9000:9000
         command: ["start-dev", "--http-port=9000"]
