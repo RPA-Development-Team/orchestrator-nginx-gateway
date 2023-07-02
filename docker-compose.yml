@@ -27,11 +27,12 @@ services:
         environment:
             KEYCLOAK_ADMIN: admin
             KEYCLOAK_ADMIN_PASSWORD: admin
+            PROXY_ADDRESS_FORWARDING: true
         volumes:
             - ../orchestrator-authentication-service/keycloak:/opt/keycloak/data/
         ports:
-        - 9000:9000
-        command: ["start-dev", "--http-port=9000"]
+        - 8080:8080
+        command: ["start-dev"]
     nginx:
         build: .
         ports:
