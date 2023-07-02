@@ -4,6 +4,8 @@ services:
         build: ../orchestrator-frontend-js/.
     orch-auth-service:
         build: ../orchestrator-authentication-service/.
+        networks:
+            - rabbitmq_net
     orch-studio-service:
         build: ../orchestrator-studio-service/.
         volumes:
@@ -24,16 +26,51 @@ services:
             - ../orchestrator-elastic-search/es-data:/usr/share/elasticsearch/data
     keycloak:
         image: quay.io/keycloak/keycloak:21.1.2
+        container_name: 'keycloak'
+        depends_on:
+            rabbitmq:
+                condition: service_healthy
         environment:
             KEYCLOAK_ADMIN: admin
             KEYCLOAK_ADMIN_PASSWORD: admin
             PROXY_ADDRESS_FORWARDING: true
+            KK_TO_RMQ_URL: rabbitmq
+            KK_TO_RMQ_PORT: 5672
+            KK_TO_RMQ_EXCHANGE: amq.topic
+            KK_TO_RMQ_USERNAME: guest
+            KK_TO_RMQ_PASSWORD: guest
+            KK_TO_RMQ_USE_TLS: false
+            KK_TO_RMQ_VHOST: /
         volumes:
             - ../orchestrator-authentication-service/keycloak:/opt/keycloak/data/
+            - ../keycloak/ext:/opt/keycloak/providers/
         ports:
         - 8080:8080
         command: ["start-dev"]
+        networks:
+            - rabbitmq_net
+    rabbitmq:
+        build: ./rabbitmq/.
+        container_name: 'rabbitmq'
+        ports:
+            - 5672:5672
+            - 15672:15672
+        volumes:
+            - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/
+            - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq
+        hostname: rabbitmq
+        networks:
+            - rabbitmq_net
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://localhost:15672"]
+            interval: 30s
+            timeout: 10s
+            retries: 5
     nginx:
         build: .
         ports:
             - 80:80
+
+networks:
+  rabbitmq_net:
+    driver: bridge
