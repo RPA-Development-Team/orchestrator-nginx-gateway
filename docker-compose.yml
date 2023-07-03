@@ -2,23 +2,36 @@ version: '3'
 services:
     orch-front:
         build: ../orchestrator-frontend-js/.
+        networks:
+            - rabbitmq_net
     orch-auth-service:
         build: ../orchestrator-authentication-service/.
+        depends_on:
+            rabbitmq:
+                condition: service_healthy
         networks:
             - rabbitmq_net
     orch-studio-service:
         build: ../orchestrator-studio-service/.
         volumes:
             - ../orchestrator-studio-service/uploads:/app/uploads
+        networks:
+            - rabbitmq_net
     orch-robot-service:
         build: ../Robot-Microservice-SocketServer/.
+        networks:
+            - rabbitmq_net
     orch-robot-logging-service:
         build: ../orchestrator-robot-logging-service/.
+        networks:
+            - rabbitmq_net
     elasticsearch:
         build: ../orchestrator-elastic-search/.
         ports:
         - 9200:9200
         - 9300:9300
+        networks:
+            - rabbitmq_net
         environment:
         - discovery.type=single-node
         - xpack.security.enabled=false
@@ -68,6 +81,11 @@ services:
             retries: 5
     nginx:
         build: .
+        networks:
+            - rabbitmq_net
+        depends_on:
+            rabbitmq:
+                condition: service_healthy
         ports:
             - 80:80
 
