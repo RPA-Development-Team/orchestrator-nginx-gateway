@@ -57,6 +57,7 @@ services:
         volumes:
             - ../orchestrator-authentication-service/keycloak:/opt/keycloak/data/
             - ../keycloak/ext:/opt/keycloak/providers/
+            - ../keycloak/themes:/opt/keycloak/themes/
         ports:
         - 8080:8080
         command: ["start-dev"]
