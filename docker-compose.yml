@@ -1,7 +1,7 @@
 version: '3'
 services:
     orch-front:
-        build: ../orchestrator-frontend-js/.
+        build: ../orchestrator-new-frontend-js/.
         networks:
             - rabbitmq_net
     orch-auth-service:
