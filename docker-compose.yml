@@ -15,6 +15,7 @@ services:
         build: ../orchestrator-studio-service/.
         volumes:
             - ../orchestrator-studio-service/uploads:/app/uploads
+            - ../orchestrator-studio-service/libraries:/app/libraries
         networks:
             - rabbitmq_net
     orch-robot-service:
