@@ -19,6 +19,10 @@ services:
             - rabbitmq_net
     orch-robot-service:
         build: ../Robot-Microservice/.
+        volumes:
+            - ../Robot-Microservice/ClientLogs:/app/ClientLogs
+            - ../Robot-Microservice/packages:/app/packages
+            - ../Robot-Microservice/ServerLogs:/app/ServerLogs
         networks:
             - rabbitmq_net
     orch-robot-logging-service:
